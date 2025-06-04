@@ -1,0 +1,86 @@
+
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { ArrowDown } from 'lucide-react';
+
+const HeroSection = () => {
+  return (
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-electric-blue/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
+      </div>
+
+      <div className="container mx-auto px-6 text-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <motion.h1 
+            className="text-5xl md:text-7xl font-bold mb-6 glow-text"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.2 }}
+          >
+            <span className="text-white">Future</span>{' '}
+            <span className="text-electric-blue">Mobile</span>
+            <br />
+            <span className="text-electric-cyan">Bookings</span>
+          </motion.h1>
+
+          <motion.p 
+            className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            Experience the next generation of mobile booking technology. 
+            Seamless appointments, instant confirmations, and AI-powered scheduling.
+          </motion.p>
+
+          <motion.div 
+            className="space-x-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.8 }}
+          >
+            <Button 
+              size="lg"
+              className="bg-electric-blue hover:bg-electric-cyan text-black font-semibold px-8 py-4 rounded-full text-lg transition-all duration-300 hover:shadow-lg hover:shadow-electric-blue/50 hover-lift"
+            >
+              Start Booking
+            </Button>
+            <Button 
+              variant="outline"
+              size="lg"
+              className="border-electric-blue text-electric-blue hover:bg-electric-blue hover:text-black px-8 py-4 rounded-full text-lg transition-all duration-300 hover-lift"
+            >
+              Learn More
+            </Button>
+          </motion.div>
+
+          <motion.div
+            className="mt-16"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.2 }}
+          >
+            <div className="flex justify-center">
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="cursor-pointer"
+              >
+                <ArrowDown className="text-electric-blue w-8 h-8" />
+              </motion.div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection;
