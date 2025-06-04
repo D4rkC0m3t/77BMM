@@ -69,7 +69,7 @@ const ScrollEffects = () => {
               transition={{ 
                 duration: 1.5, 
                 delay: index * 0.2,
-                type: "spring"
+                type: "tween"
               }}
               whileHover={{ 
                 scale: 1.05,

@@ -39,12 +39,16 @@
     "@radix-ui/react-toggle": "^1.1.0",
     "@radix-ui/react-toggle-group": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.4",
+    "@sendgrid/mail": "^8.1.5",
     "@tanstack/react-query": "^5.56.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "cors": "^2.8.5",
     "date-fns": "^3.6.0",
+    "dotenv": "^16.5.0",
     "embla-carousel-react": "^8.3.0",
+    "express": "^5.1.0",
     "framer-motion": "^12.16.0",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.462.0",
@@ -80,5 +84,18 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
-  }
+  },
+  "description": "**URL**: https://lovable.dev/projects/1a98135a-2c4f-4143-8123-130f10a0f681",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/D4rkC0m3t/future-mobile-bookings-hub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/D4rkC0m3t/future-mobile-bookings-hub/issues"
+  },
+  "homepage": "https://github.com/D4rkC0m3t/future-mobile-bookings-hub#readme"
 }

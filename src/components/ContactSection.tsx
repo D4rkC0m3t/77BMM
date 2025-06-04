@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const ContactSection = () => {
@@ -76,7 +76,7 @@ const ContactSection = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-white">hello@7bmm.com</p>
+                <p className="text-white">chandragoud971@gmail.com</p>
               </CardContent>
             </Card>
 
@@ -91,7 +91,26 @@ const ContactSection = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-white">+1 (555) 123-4567</p>
+                <p className="text-white">+91 81520 74243</p>
+              </CardContent>
+            </Card>
+
+            <Card className="glass border-white/20">
+              <CardHeader>
+                <CardTitle className="text-electric-blue text-xl flex items-center">
+                  <MapPin className="mr-2" />
+                  Visit Us
+                </CardTitle>
+                <CardDescription className="text-white/70">
+                  Find our office location
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-white">
+                  Jain Market 1st Gate, 63 Block<br />
+                  Near Moti Circle, Bellary<br />
+                  KA 583101, Karnataka, India
+                </p>
               </CardContent>
             </Card>
 

@@ -104,10 +104,11 @@ const ServicesSection = () => {
                             scale: [1, 1.2, 1],
                             opacity: [0.7, 1, 0.7]
                           }}
-                          transition={{ 
+                          transition={{
                             duration: 2, 
                             repeat: Infinity,
-                            delay: idx * 0.3
+                            delay: idx * 0.3,
+                            type: "tween" // Explicitly set type to tween
                           }}
                         />
                         {feature}

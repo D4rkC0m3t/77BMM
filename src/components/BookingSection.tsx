@@ -17,6 +17,7 @@ const BookingSection = () => {
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [selectedService, setSelectedService] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
+  const [otherServiceText, setOtherServiceText] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,19 +26,30 @@ const BookingSection = () => {
   const { toast } = useToast();
 
   const services = [
-    { value: 'mobile-design', label: 'Mobile App Design', duration: '2 hours' },
-    { value: 'development', label: 'Development Consultation', duration: '1 hour' },
-    { value: 'strategy', label: 'Strategy Session', duration: '1.5 hours' }
+    { value: 'front-glass', label: 'Glass Replacement (Front)' },
+    { value: 'display-replacement', label: 'Display Replacement (Front)' },
+    { value: 'back-glass', label: 'Back Glass Replacement' },
+    { value: 'battery', label: 'Battery Replacement' },
+    { value: 'body-housing', label: 'Body Housing Replacement' },
+    { value: 'charging-port', label: 'Charging Port Replacement' },
+    { value: 'speaker', label: 'Speaker Replacement' },
+    { value: 'camera', label: 'Camera Replacement' },
+    { value: 'mic', label: 'Microphone Issue' },
+    { value: 'network', label: 'Network Issue' },
+    { value: 'water-damage', label: 'Water Damage Repair' },
+    { value: 'software', label: 'Software Issue / Flashing' },
+    { value: 'motherboard', label: 'Motherboard Repair' },
+    { value: 'others', label: 'Others' }
   ];
 
   const timeSlots = [
     '09:00', '10:30', '12:00', '13:30', '15:00', '16:30'
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!selectedDate || !selectedService || !selectedTime || !formData.name || !formData.email) {
+    if (!selectedDate || !selectedService || !selectedTime || !formData.name || !formData.email || (selectedService === 'others' && !otherServiceText)) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields",
@@ -46,16 +58,63 @@ const BookingSection = () => {
       return;
     }
 
-    toast({
-      title: "Booking Confirmed! 🎉",
-      description: `Your ${services.find(s => s.value === selectedService)?.label} appointment is scheduled for ${format(selectedDate, 'PPP')} at ${selectedTime}. Confirmation email will be sent shortly.`,
-    });
+    const serviceObject = services.find(s => s.value === selectedService);
+    const serviceNameToSubmit = selectedService === 'others' ? 'Others' : (serviceObject ? serviceObject.label : '');
 
-    // Reset form
-    setSelectedDate(undefined);
-    setSelectedService('');
-    setSelectedTime('');
-    setFormData({ name: '', email: '', phone: '' });
+    const bookingDetails = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      serviceName: serviceNameToSubmit,
+      otherServiceText: otherServiceText,
+      bookingDate: selectedDate ? format(selectedDate, 'PPP') : '',
+      bookingTime: selectedTime,
+    };
+
+    try {
+      const response = await fetch('http://localhost:3001/api/send-booking-confirmation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookingDetails),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        toast({
+          title: "Booking Confirmed! 🎉",
+          description: `Your ${bookingDetails.serviceName === 'Others' && bookingDetails.otherServiceText ? bookingDetails.otherServiceText : bookingDetails.serviceName} appointment is scheduled for ${bookingDetails.bookingDate} at ${bookingDetails.bookingTime}. Confirmation email is on its way!`,
+        });
+        // Reset form
+        setSelectedDate(undefined);
+        setSelectedService('');
+        setSelectedTime('');
+        setFormData({ name: '', email: '', phone: '' });
+        setOtherServiceText('');
+      } else {
+        toast({
+          title: "Booking Failed",
+          description: result.message || "Could not send booking confirmation. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error: any) {
+      console.error('Booking submission error:', error);
+      let errorMessage = "An error occurred while submitting your booking. Please check your connection or contact support if the issue persists.";
+      if (error instanceof Error) {
+        errorMessage = `Booking Error: ${error.message}. Please check your connection or contact support.`;
+      }
+      // Log the full error object to the browser console for more details
+      console.error('Full booking submission error object:', error); 
+
+      toast({
+        title: "Booking Error",
+        description: errorMessage,
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -146,11 +205,24 @@ const BookingSection = () => {
                           value={service.value}
                           className="text-white hover:bg-electric-blue/20"
                         >
-                          {service.label} ({service.duration})
+                          {service.label}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
+                  {selectedService === 'others' && (
+                    <div className="space-y-2 mt-4">
+                      <Label htmlFor="otherService" className="text-white">Please specify other service *</Label>
+                      <Input
+                        id="otherService"
+                        value={otherServiceText}
+                        onChange={(e) => setOtherServiceText(e.target.value)}
+                        className="glass border-white/20 text-white placeholder:text-white/50"
+                        placeholder="Specify service details"
+                        required
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* Date Selection */}
