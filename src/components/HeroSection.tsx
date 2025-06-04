@@ -85,7 +85,7 @@ const HeroSection = () => {
               <motion.div
                 key={service}
                 className="glass px-4 py-2 rounded-full text-sm font-medium"
-                whileHover={{ scale: 1.05, glow: true }}
+                whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
                 {service}
