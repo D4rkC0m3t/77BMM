@@ -5,7 +5,7 @@ import { ArrowDown, Smartphone, Wrench, Zap } from 'lucide-react';
 
 const HeroSection = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-electric-blue/20 rounded-full blur-3xl animate-pulse-slow"></div>
@@ -14,7 +14,7 @@ const HeroSection = () => {
 
       {/* Floating Service Icons */}
       <motion.div
-        className="absolute top-20 left-10 text-electric-blue"
+        className="absolute top-32 left-10 text-electric-blue"
         animate={{ 
           y: [0, -20, 0],
           rotate: [0, 10, 0]
@@ -25,7 +25,7 @@ const HeroSection = () => {
       </motion.div>
       
       <motion.div
-        className="absolute top-32 right-20 text-electric-cyan"
+        className="absolute top-44 right-20 text-electric-cyan"
         animate={{ 
           y: [0, 15, 0],
           rotate: [0, -10, 0]
