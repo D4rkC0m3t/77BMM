@@ -1,7 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Smartphone, Wrench, Zap } from 'lucide-react';
 
 const HeroSection = () => {
   return (
@@ -11,6 +11,40 @@ const HeroSection = () => {
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-electric-blue/20 rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
       </div>
+
+      {/* Floating Service Icons */}
+      <motion.div
+        className="absolute top-20 left-10 text-electric-blue"
+        animate={{ 
+          y: [0, -20, 0],
+          rotate: [0, 10, 0]
+        }}
+        transition={{ duration: 4, repeat: Infinity }}
+      >
+        <Smartphone size={40} />
+      </motion.div>
+      
+      <motion.div
+        className="absolute top-32 right-20 text-electric-cyan"
+        animate={{ 
+          y: [0, 15, 0],
+          rotate: [0, -10, 0]
+        }}
+        transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+      >
+        <Wrench size={35} />
+      </motion.div>
+      
+      <motion.div
+        className="absolute bottom-40 left-20 text-neon-green"
+        animate={{ 
+          y: [0, -25, 0],
+          rotate: [0, 15, 0]
+        }}
+        transition={{ duration: 5, repeat: Infinity, delay: 2 }}
+      >
+        <Zap size={30} />
+      </motion.div>
 
       <div className="container mx-auto px-6 text-center relative z-10">
         <motion.div
@@ -24,10 +58,10 @@ const HeroSection = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.2 }}
           >
-            <span className="text-white">Future</span>{' '}
+            <span className="text-white">Professional</span>{' '}
             <span className="text-electric-blue">Mobile</span>
             <br />
-            <span className="text-electric-cyan">Bookings</span>
+            <span className="text-electric-cyan">Repair Services</span>
           </motion.h1>
 
           <motion.p 
@@ -36,9 +70,28 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            Experience the next generation of mobile booking technology. 
-            Seamless appointments, instant confirmations, and AI-powered scheduling.
+            Expert smartphone and tablet repairs with cutting-edge technology. 
+            Fast turnaround, quality guaranteed, and seamless booking experience.
           </motion.p>
+
+          {/* Service Highlights */}
+          <motion.div 
+            className="flex flex-wrap justify-center gap-6 mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6 }}
+          >
+            {['Screen Repair', 'Battery Replacement', 'Water Damage', 'Software Fix'].map((service, index) => (
+              <motion.div
+                key={service}
+                className="glass px-4 py-2 rounded-full text-sm font-medium"
+                whileHover={{ scale: 1.05, glow: true }}
+                transition={{ duration: 0.2 }}
+              >
+                {service}
+              </motion.div>
+            ))}
+          </motion.div>
 
           <motion.div 
             className="space-x-4"
@@ -50,14 +103,14 @@ const HeroSection = () => {
               size="lg"
               className="bg-electric-blue hover:bg-electric-cyan text-black font-semibold px-8 py-4 rounded-full text-lg transition-all duration-300 hover:shadow-lg hover:shadow-electric-blue/50 hover-lift"
             >
-              Start Booking
+              Book Repair
             </Button>
             <Button 
               variant="outline"
               size="lg"
               className="border-electric-blue text-electric-blue hover:bg-electric-blue hover:text-black px-8 py-4 rounded-full text-lg transition-all duration-300 hover-lift"
             >
-              Learn More
+              View Services
             </Button>
           </motion.div>
 

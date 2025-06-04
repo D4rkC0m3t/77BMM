@@ -24,10 +24,17 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.div 
-            className="text-2xl font-bold text-electric-blue glow-text"
+            className="flex items-center space-x-3"
             whileHover={{ scale: 1.05 }}
           >
-            7BMM
+            <img 
+              src="/lovable-uploads/4e91c577-99ae-406c-96cd-9699b4e97f90.png" 
+              alt="77BMM Services Logo" 
+              className="w-10 h-10 object-contain"
+            />
+            <div className="text-2xl font-bold text-electric-blue glow-text">
+              77BMM Services
+            </div>
           </motion.div>
 
           {/* Desktop Navigation */}

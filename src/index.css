@@ -56,6 +56,11 @@
     background: linear-gradient(135deg, #0A0A0A 0%, #1A1A2E 50%, #16213E 100%);
     min-height: 100vh;
   }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer components {
@@ -69,5 +74,44 @@
   
   .hover-lift {
     @apply transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl;
+  }
+
+  /* Enhanced scroll effects */
+  .scroll-reveal {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+
+  .scroll-reveal.revealed {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Parallax hover effects */
+  .parallax-hover {
+    @apply transition-transform duration-300 ease-out;
+    transform-style: preserve-3d;
+  }
+
+  .parallax-hover:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(20px);
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Glow on scroll */
+  .glow-on-scroll {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .glow-on-scroll:hover {
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+    transform: translateY(-5px);
   }
 }
